@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
+import 'package:intl/intl.dart';
 
 class PaymentsCard extends StatelessWidget {
   final random = Random();
@@ -10,22 +11,27 @@ class PaymentsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    DateTime createdAt = DateTime.parse(paymentData['paid_at']);
+    String day = DateFormat('dd').format(createdAt);
+    String month = DateFormat('MMM').format(createdAt);
+    String year = DateFormat('yy').format(createdAt);
+
     return Card(
       child: InkWell(
         child: Padding(
           padding: const EdgeInsets.all(10.0),
           child: Row(
             children: [
-              Icon(Icons.monetization_on,
+              Expanded(child: Icon(Icons.monetization_on,
                   color: Color.fromARGB(
                     255,
                     random.nextInt(256),
                     random.nextInt(256),
                     random.nextInt(256),
                   ),
-                  size: 50),
+                  size: 50), flex: 2),
               SizedBox(width: 20),
-              Column(
+              Expanded(child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
@@ -65,7 +71,16 @@ class PaymentsCard extends StatelessWidget {
                     ],
                   ),
                 ],
-              ),
+              ), flex: 8),
+              Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(day, style: TextStyle(fontSize: 18)),
+                      Text(month, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18))
+                    ],
+                  ),
+                  flex: 2),
             ],
           ),
         ),

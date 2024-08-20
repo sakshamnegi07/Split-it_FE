@@ -28,11 +28,6 @@ class GroupCard extends StatelessWidget {
                       groupId: group['group_id'],
                       isAdmin: isAdmin)),
             ),
-            // builder: (context) => GroupDetailsScreen(
-            //     groupName: group['group_name'],
-            //     groupDescription: group['group_description'],
-            //     groupId: group['group_id'],
-            //     isAdmin: isAdmin)),
           );
         },
         child: Padding(
