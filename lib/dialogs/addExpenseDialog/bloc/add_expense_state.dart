@@ -1,6 +1,21 @@
-part of 'add_expense_bloc.dart';
 
-@immutable
-sealed class AddExpenseState {}
+abstract class ExpenseState {}
 
-final class AddExpenseInitial extends AddExpenseState {}
+class ExpenseInitial extends ExpenseState {}
+
+class ExpenseLoading extends ExpenseState {}
+
+class MembersFetched extends ExpenseState {
+  final List<Map<String, dynamic>> members;
+
+  MembersFetched({required this.members});
+}
+
+class ExpenseAdded extends ExpenseState {}
+
+class ExpenseError extends ExpenseState {
+  final String message;
+
+  ExpenseError({required this.message});
+}
+

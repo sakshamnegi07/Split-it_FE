@@ -57,7 +57,6 @@ class _BalancesScreenState extends State<BalancesScreen> {
               final String username = userData['username'];
               final double totalAmount = userData['total_amount'].toDouble();
               final List<dynamic> balances = userData['balances'];
-
               return Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
@@ -89,6 +88,8 @@ class _BalancesScreenState extends State<BalancesScreen> {
                     Text('Settlements:',
                         style: TextStyle(
                             fontSize: 18, fontWeight: FontWeight.bold)),
+                    if(balances.isEmpty)
+                     Expanded(child: Center(child: Text("No settlements with friends yet!"))),
                     Expanded(
                       child: ListView.builder(
                         itemCount: balances.length,

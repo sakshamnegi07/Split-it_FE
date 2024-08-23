@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:split_fe/utils/toast.dart';
 import 'package:split_fe/services/api_service.dart';
 import 'package:split_fe/dialogs/addMemberDialog.dart';
-import 'package:split_fe/dialogs/addExpenseDialog.dart';
+import 'package:split_fe/dialogs/addExpenseDialog/add_expense.dart';
 import 'package:split_fe/ui/groupMembers/groupMembers.dart';
 import 'bloc/group_details_bloc.dart';
 import 'bloc/group_details_event.dart';

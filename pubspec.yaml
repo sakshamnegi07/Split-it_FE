@@ -41,6 +41,13 @@ dependencies:
   fluttertoast: ^8.2.5
   flutter_bloc: ^8.1.6
   intl: ^0.17.0
+  flutter_launcher_icons: ^0.13.1
+
+flutter_icons:
+  image_path: 'assets/images/app_launch_icon.png'
+  android: true
+  adaptive_icon_background: "#ffffff"
+  ios: true
 
 dev_dependencies:
   flutter_test:

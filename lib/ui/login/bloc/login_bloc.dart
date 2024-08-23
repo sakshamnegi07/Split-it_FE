@@ -29,7 +29,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         emit(LoginFailure(error: response['error'] ?? 'Login failed'));
       }
     } catch (error) {
-      emit(LoginFailure(error: error.toString()));
+      emit(LoginFailure(error: "Network error!"));
     }
   }
 }

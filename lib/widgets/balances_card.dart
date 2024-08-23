@@ -7,7 +7,6 @@ class BalancesCard extends StatelessWidget {
   final Function onDialogClose;
 
   BalancesCard({required this.balance, required this.onDialogClose});
-
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -64,8 +63,7 @@ class BalancesCard extends StatelessWidget {
                               amount:
                               balance['total_amount'].toDouble().abs()));
 
-                      await Future.delayed(Duration(milliseconds: 500));
-                      if (result == null) onDialogClose();
+                      if (result == "Settled") onDialogClose();
                     },
                     child: Text('Settle up!')),
               if (balance['total_amount'].toDouble() > 0.0)

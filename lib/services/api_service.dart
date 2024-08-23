@@ -4,7 +4,6 @@ import '../utils/constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:dio/dio.dart';
 import '../utils/toast.dart';
-import '../dialogs/logoutDialog.dart';
 import 'package:flutter/material.dart';
 import '../../main.dart';
 import '../ui/login/login.dart';
@@ -230,7 +229,7 @@ class ApiService {
       );
       return response.data;
     } on DioError catch (e) {
-      ToastService.showToast("Error in fetching members!");
+      ToastService.showToast("Error in fetching expenses!");
       return [];
     }
   }
@@ -238,7 +237,8 @@ class ApiService {
   static Future<Map<String, dynamic>> addExpenseToGroup(
       {required int groupId,
       required String description,
-      required double amount}) async {
+      required double amount,
+      required int paidBy}) async {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       String? authToken = prefs.getString('authToken');
@@ -252,14 +252,14 @@ class ApiService {
             },
           ),
           data: {
-            "paid_by": userId,
+            "paid_by": paidBy,
             "amount": amount,
             "group_id": groupId,
             "description": description
           });
       return response.data;
     } on DioException catch (e) {
-      return {"Error": "Expense couldn't be added"};
+      return {"error": "Expense couldn't be added"};
     }
   }
 
@@ -297,7 +297,7 @@ class ApiService {
           ));
       return response.data;
     } on DioException catch (e) {
-      ToastService.showToast("Failed to get overall balance!");
+      ToastService.showToast("Failed to fetch user details!");
       return {};
     }
   }
@@ -384,7 +384,8 @@ class ApiService {
     }
   }
 
-  static Future<void> downloadFile({required String url, required String fileName}) async {
+  static Future<void> downloadFile(
+      {required String url, required String fileName}) async {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       String? authToken = prefs.getString('authToken');
@@ -393,7 +394,7 @@ class ApiService {
       String filePath = "${dir.path}/$fileName";
       String finalUrl = '$apiUrl' + '/download/payments/' + url;
 
-      print(filePath);
+      debugPrint(filePath);
       await dio.download(
         options: Options(
           headers: <String, String>{
@@ -405,14 +406,41 @@ class ApiService {
         filePath,
         onReceiveProgress: (received, total) {
           if (total != -1) {
-            print((received / total * 100).toStringAsFixed(0) + "%");
+            debugPrint((received / total * 100).toStringAsFixed(0) + "%");
           }
         },
       );
 
-      print("Download completed: $filePath");
+      debugPrint("Download completed: $filePath");
     } on DioException catch (e) {
-      print("Download failed: $e");
+      debugPrint("Download failed: $e");
     }
   }
+
+  // static Future<void> downloadFile({required String url, required String fileName}) async{
+  //   SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   String? authToken = prefs.getString('authToken');
+  //   final directory = await getApplicationDocumentsDirectory();
+  //   print(directory);
+  //   final downloadsDirectory = Directory('${directory?.path}/Download');
+  //   if (!await downloadsDirectory.exists()) {
+  //     await downloadsDirectory.create(recursive: true);
+  //   }
+  //
+  //   final taskId = await FlutterDownloader.enqueue(
+  //     url: 'https://example.com/file.csv',
+  //     headers: {
+  //       'Authorization': 'Bearer $authToken',
+  //       'Content-Type' : "text/csv",
+  //       'Accept' : '*/*',
+  //       'Content-disposition': "attachment;filename=report.csv",
+  //     },
+  //     savedDir: downloadsDirectory.path,
+  //     fileName: 'file.csv',
+  //     showNotification: true, // Show download progress in notification bar (Android)
+  //     openFileFromNotification: true, // Click on notification to open file (Android)
+  //   );
+  //
+  //   print('Download task ID: $taskId');
+  // }
 }

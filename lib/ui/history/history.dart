@@ -36,6 +36,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
       await ApiService.downloadFile(url: 'csv', fileName: "Payments.csv");
       ToastService.showToast("Download completed!");
     } catch (e) {
+      print(e);
       ToastService.showToast("Error");
     }
   }

@@ -64,6 +64,7 @@ class _SettleUpDialogState extends State<SettleUpDialog> {
         _isLoading=false;
       });
     }
+    Navigator.pop(context, "Settled");
   }
 
   @override
@@ -153,7 +154,6 @@ class _SettleUpDialogState extends State<SettleUpDialog> {
                       ),
                       onPressed: (){
                         _settleBalance();
-                        Navigator.pop(context);
                       },
                       child: Text('Settle'),
                     ),

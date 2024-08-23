@@ -51,8 +51,11 @@ class _LoginScreenState extends State<LoginScreen> {
           listener: (context, state) {
             if (state is LoginSuccess) {
               ToastService.showToast("Login successful");
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (_) => LandingScreen()));
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (_) => LandingScreen()),
+                    (Route<dynamic> route) => false,
+              );
             } else if (state is LoginFailure) {
               ToastService.showToast('Login failed: ${state.error}');
             }
