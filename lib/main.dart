@@ -3,14 +3,21 @@ import 'ui/login/login.dart';
 import 'ui/register/register.dart';
 import 'ui/home/home.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_downloader/flutter_downloader.dart';
+import 'package:split_fe/ui/splashscreen/splashscreen.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await FlutterDownloader.initialize(
+      debug:
+          true, // optional: set to false to disable printing logs to console (default: true)
+      ignoreSsl:
+          true // option: set to false to disable working with http links (default: false)
+      );
   runApp(MyApp());
 }
-
 
 class MyApp extends StatelessWidget {
   @override
@@ -44,7 +51,7 @@ class MyApp extends StatelessWidget {
             fontSize: 20,
           ),
           iconTheme: IconThemeData(
-            color: Colors.white, // Color of AppBar icons
+            color: Colors.white,
           ),
         ),
         scaffoldBackgroundColor: Colors.black87,
@@ -52,7 +59,7 @@ class MyApp extends StatelessWidget {
           Theme.of(context).primaryTextTheme,
         ),
       ),
-      home: HomeScreen(),
+      home: SplashScreen(),
       navigatorKey: navigatorKey,
       routes: {
         '/login': (context) => LoginScreen(),

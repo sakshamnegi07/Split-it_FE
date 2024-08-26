@@ -21,7 +21,6 @@ class ExpenseBloc extends Bloc<ExpenseEvent, ExpenseState> {
   }
 
   void _onAddExpense(AddExpense event, Emitter<ExpenseState> emit) async {
-
     emit(ExpenseLoading());
     try {
       final data = await ApiService.addExpenseToGroup(
@@ -41,5 +40,4 @@ class ExpenseBloc extends Bloc<ExpenseEvent, ExpenseState> {
       emit(ExpenseError(message: "Failed to add expense!"));
     }
   }
-
 }

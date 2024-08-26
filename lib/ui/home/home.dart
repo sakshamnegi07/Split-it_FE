@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:split_fe/ui/login/login.dart';
 import 'package:split_fe/ui/register/register.dart';
-import 'package:split_fe/services/api_service.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:split_fe/ui/landingPage/landingPage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeScreen extends StatefulWidget {
   @override

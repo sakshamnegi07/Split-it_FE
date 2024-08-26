@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import '../../main.dart';
 import '../ui/login/login.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:flutter_downloader/flutter_downloader.dart';
+import 'dart:io';
 
 class FetchedUser {
   final int id;
@@ -40,7 +42,10 @@ class ApiInterceptor extends Interceptor {
 }
 
 class ApiService {
-  static final Dio dio = Dio();
+  static final Dio dio = Dio(BaseOptions(
+    connectTimeout: const Duration(seconds: 3),
+    receiveTimeout: const Duration(seconds: 3),
+  ));
 
   static Future<Map<String, dynamic>> login(
       {required String email, required String password}) async {
@@ -389,58 +394,63 @@ class ApiService {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       String? authToken = prefs.getString('authToken');
-      var dir = await getApplicationDocumentsDirectory();
-
-      String filePath = "${dir.path}/$fileName";
+      Directory? downloadsDirectory;
+      if (Platform.isAndroid) {
+        downloadsDirectory = Directory('/storage/emulated/0/Download');
+      } else {
+        downloadsDirectory = await getApplicationDocumentsDirectory();
+      }
       String finalUrl = '$apiUrl' + '/download/payments/' + url;
-
-      debugPrint(filePath);
-      await dio.download(
-        options: Options(
-          headers: <String, String>{
-            'Content-Type': 'application/json; charset=UTF-8',
-            'Authorization': 'Bearer $authToken'
-          },
-        ),
-        finalUrl,
-        filePath,
-        onReceiveProgress: (received, total) {
-          if (total != -1) {
-            debugPrint((received / total * 100).toStringAsFixed(0) + "%");
-          }
+      final taskId = await FlutterDownloader.enqueue(
+        url: finalUrl,
+        headers: {
+          'Authorization': 'Bearer $authToken',
+          // 'Content-Type': "text/csv",
         },
+        savedDir: downloadsDirectory.path,
+        fileName: 'Payments.csv',
+        showNotification: true,
+        openFileFromNotification: true,
       );
-
-      debugPrint("Download completed: $filePath");
-    } on DioException catch (e) {
-      debugPrint("Download failed: $e");
+      await _waitForDownloadCompletion(taskId!);
+      await FlutterDownloader.open(taskId: taskId!);
+    } catch (e) {
+      debugPrint(e.toString());
+      throw Exception("Can not download file.");
     }
   }
 
-  // static Future<void> downloadFile({required String url, required String fileName}) async{
-  //   SharedPreferences prefs = await SharedPreferences.getInstance();
-  //   String? authToken = prefs.getString('authToken');
-  //   final directory = await getApplicationDocumentsDirectory();
-  //   print(directory);
-  //   final downloadsDirectory = Directory('${directory?.path}/Download');
-  //   if (!await downloadsDirectory.exists()) {
-  //     await downloadsDirectory.create(recursive: true);
-  //   }
-  //
-  //   final taskId = await FlutterDownloader.enqueue(
-  //     url: 'https://example.com/file.csv',
-  //     headers: {
-  //       'Authorization': 'Bearer $authToken',
-  //       'Content-Type' : "text/csv",
-  //       'Accept' : '*/*',
-  //       'Content-disposition': "attachment;filename=report.csv",
-  //     },
-  //     savedDir: downloadsDirectory.path,
-  //     fileName: 'file.csv',
-  //     showNotification: true, // Show download progress in notification bar (Android)
-  //     openFileFromNotification: true, // Click on notification to open file (Android)
-  //   );
-  //
-  //   print('Download task ID: $taskId');
-  // }
+  static Future<void> _waitForDownloadCompletion(String taskId) async {
+    bool isComplete = false;
+    while (!isComplete) {
+      await Future.delayed(Duration(milliseconds: 500));
+      final tasks = await FlutterDownloader.loadTasks();
+      final task = tasks?.firstWhere((task) => task.taskId == taskId);
+      if (task?.status == DownloadTaskStatus.complete) {
+        isComplete = true;
+      }
+    }
+  }
+
+  static Future<bool> isTokenValid(String token) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? authToken = prefs.getString('authToken');
+    final response = await dio.get(
+      '$apiUrl/validate-user',
+      options: Options(
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+          'Authorization': 'Bearer $authToken'
+        },
+      ),
+    );
+
+    await Future.delayed(Duration(seconds: 1));
+
+    if (response.statusCode == 200) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }

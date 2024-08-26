@@ -20,9 +20,9 @@ class GroupDetailsScreen extends StatefulWidget {
 
   GroupDetailsScreen(
       {required this.groupName,
-        required this.groupDescription,
-        required this.groupId,
-        required this.isAdmin});
+      required this.groupDescription,
+      required this.groupId,
+      required this.isAdmin});
 
   @override
   _GroupDetailsScreenState createState() => _GroupDetailsScreenState();
@@ -32,7 +32,9 @@ class _GroupDetailsScreenState extends State<GroupDetailsScreen> {
   @override
   void initState() {
     super.initState();
-    context.read<GroupDetailsBloc>().add(FetchGroupDetails(groupId: widget.groupId));
+    context
+        .read<GroupDetailsBloc>()
+        .add(FetchGroupDetails(groupId: widget.groupId));
   }
 
   Future<void> _openExpenseDialog() async {
@@ -45,7 +47,9 @@ class _GroupDetailsScreenState extends State<GroupDetailsScreen> {
 
     if (result != null) {
       await Future.delayed(Duration(milliseconds: 500));
-      context.read<GroupDetailsBloc>().add(FetchGroupDetails(groupId: widget.groupId));
+      context
+          .read<GroupDetailsBloc>()
+          .add(FetchGroupDetails(groupId: widget.groupId));
     }
   }
 
@@ -62,7 +66,9 @@ class _GroupDetailsScreenState extends State<GroupDetailsScreen> {
     );
 
     if (result != null) {
-      context.read<GroupDetailsBloc>().add(FetchGroupDetails(groupId: widget.groupId));
+      context
+          .read<GroupDetailsBloc>()
+          .add(FetchGroupDetails(groupId: widget.groupId));
     }
   }
 
@@ -81,8 +87,9 @@ class _GroupDetailsScreenState extends State<GroupDetailsScreen> {
                           color: Colors.white,
                           fontSize: 19,
                           fontWeight: FontWeight.bold)),
-                  Text(widget.groupDescription,
-                      style: TextStyle(color: Colors.white, fontSize: 12)),
+                  if (widget.groupDescription != "")
+                    Text(widget.groupDescription,
+                        style: TextStyle(color: Colors.white, fontSize: 12)),
                 ],
               ),
             ],
@@ -100,13 +107,13 @@ class _GroupDetailsScreenState extends State<GroupDetailsScreen> {
                 context,
                 MaterialPageRoute(
                   builder: (context) => BlocProvider(
-                    create: (context) => GroupMembersBloc()..add(FetchGroupMembers(groupId: widget.groupId)),
+                    create: (context) => GroupMembersBloc()
+                      ..add(FetchGroupMembers(groupId: widget.groupId)),
                     child: GroupMembersScreen(
                         groupName: widget.groupName,
                         groupDescription: widget.groupDescription,
                         groupId: widget.groupId,
-                        isAdmin: widget.isAdmin
-                    ),
+                        isAdmin: widget.isAdmin),
                   ),
                 ),
               );
@@ -124,7 +131,8 @@ class _GroupDetailsScreenState extends State<GroupDetailsScreen> {
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     foregroundColor: Colors.white,
-                    backgroundColor: Colors.grey[600], // Custom background color
+                    backgroundColor:
+                        Colors.grey[600], // Custom background color
                   ),
                   onPressed: () => _openAddMemberDialog(),
                   child: Text('Add Member'),
@@ -132,7 +140,8 @@ class _GroupDetailsScreenState extends State<GroupDetailsScreen> {
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     foregroundColor: Colors.white,
-                    backgroundColor: Colors.grey[600], // Custom background color
+                    backgroundColor:
+                        Colors.grey[600], // Custom background color
                   ),
                   onPressed: () => _openExpenseDialog(),
                   child: Text('Add Expense'),
@@ -149,7 +158,8 @@ class _GroupDetailsScreenState extends State<GroupDetailsScreen> {
                 } else if (state is GroupDetailsLoaded) {
                   return Card(
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 40.0, vertical: 15.0),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 40.0, vertical: 15.0),
                       child: Column(
                         children: [
                           Text(
@@ -196,7 +206,8 @@ class _GroupDetailsScreenState extends State<GroupDetailsScreen> {
                     return ListView.builder(
                       itemCount: state.groupExpenses.length,
                       itemBuilder: (context, index) {
-                        return GroupExpensesCard(expense: state.groupExpenses[index]);
+                        return GroupExpensesCard(
+                            expense: state.groupExpenses[index]);
                       },
                     );
                   }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:split_fe/ui/home/home.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LogoutDialog extends StatefulWidget {
@@ -8,11 +8,15 @@ class LogoutDialog extends StatefulWidget {
 }
 
 class _LogoutDialogState extends State<LogoutDialog> {
-
-  void _logout() async{
+  void _logout() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.clear();
-    Navigator.of(context).pushNamedAndRemoveUntil('/', (Route<dynamic> route) => false);
+    Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(builder: (_) => HomeScreen()),
+      (Route<dynamic> route) => false,
+    );
+    // Navigator.of(context).pushNamedAndRemoveUntil('/', (Route<dynamic> route) => false);
   }
 
   @override
@@ -27,11 +31,10 @@ class _LogoutDialogState extends State<LogoutDialog> {
           children: <Widget>[
             const SizedBox(height: 10),
             SizedBox(
-              height: 100,
-              child: Center(
-               child: Text("Are you sure?", style: TextStyle(fontSize: 20))
-              )
-            ),
+                height: 100,
+                child: Center(
+                    child:
+                        Text("Are you sure?", style: TextStyle(fontSize: 20)))),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
@@ -48,11 +51,9 @@ class _LogoutDialogState extends State<LogoutDialog> {
                   },
                   child: Text('Logout',
                       style: TextStyle(
-                        color: Colors.red[500],
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18
-                      )
-                  ),
+                          color: Colors.red[500],
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18)),
                 )
               ],
             ),

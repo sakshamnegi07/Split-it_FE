@@ -134,26 +134,27 @@ class AddExpenseDialog extends StatelessWidget {
                 ),
                 TextButton(
                   onPressed: () {
-                    if(selectedMemberId == null){
-                      ToastService.showToast("Select member who paid for the expense!");
+                    if (selectedMemberId == null) {
+                      ToastService.showToast(
+                          "Select member who paid for the expense!");
                       return;
                     }
-                    if(_amountController.text == ""){
+                    if (_amountController.text == "") {
                       ToastService.showToast("Enter amount!");
                       return;
                     }
-                    if(_expenseDescription.text == ""){
+                    if (_expenseDescription.text == "") {
                       ToastService.showToast("Enter expense description!");
                       return;
                     }
-                      BlocProvider.of<ExpenseBloc>(context).add(
-                        AddExpense(
-                          groupId: groupId,
-                          description: _expenseDescription.text,
-                          amount: double.parse(_amountController.text),
-                          paidBy: selectedMemberId!,
-                        ),
-                      );
+                    BlocProvider.of<ExpenseBloc>(context).add(
+                      AddExpense(
+                        groupId: groupId,
+                        description: _expenseDescription.text,
+                        amount: double.parse(_amountController.text),
+                        paidBy: selectedMemberId!,
+                      ),
+                    );
                   },
                   child: Text('ADD', style: TextStyle(color: Colors.green)),
                 ),
