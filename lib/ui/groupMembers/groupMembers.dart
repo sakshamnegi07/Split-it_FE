@@ -16,9 +16,9 @@ class GroupMembersScreen extends StatefulWidget {
 
   GroupMembersScreen(
       {required this.groupName,
-        required this.groupDescription,
-        required this.groupId,
-        required this.isAdmin});
+      required this.groupDescription,
+      required this.groupId,
+      required this.isAdmin});
 
   @override
   _GroupMembersScreenState createState() => _GroupMembersScreenState();
@@ -30,7 +30,9 @@ class _GroupMembersScreenState extends State<GroupMembersScreen> {
   @override
   void initState() {
     super.initState();
-    context.read<GroupMembersBloc>().add(FetchGroupMembers(groupId: widget.groupId));
+    context
+        .read<GroupMembersBloc>()
+        .add(FetchGroupMembers(groupId: widget.groupId));
     _loadCurrentUserId();
   }
 
@@ -71,7 +73,8 @@ class _GroupMembersScreenState extends State<GroupMembersScreen> {
               return Center(child: Text('No members found'));
             }
             return Padding(
-              padding: const EdgeInsets.only(top: 15.0), // Add padding at the top
+              padding:
+                  const EdgeInsets.only(top: 15.0), // Add padding at the top
               child: ListView.builder(
                 itemCount: state.groupMembers.length,
                 itemBuilder: (context, index) {
@@ -84,7 +87,9 @@ class _GroupMembersScreenState extends State<GroupMembersScreen> {
                     isGroupAdmin: widget.isAdmin,
                     groupId: widget.groupId,
                     refreshGroupMembers: () {
-                      context.read<GroupMembersBloc>().add(FetchGroupMembers(groupId: widget.groupId));
+                      context
+                          .read<GroupMembersBloc>()
+                          .add(FetchGroupMembers(groupId: widget.groupId));
                     },
                   );
                 },
@@ -108,11 +113,11 @@ class GroupMembersCard extends StatelessWidget {
 
   GroupMembersCard(
       {required this.user,
-        required this.isCurrentUser,
-        required this.isBalancePositive,
-        required this.isGroupAdmin,
-        required this.groupId,
-        required this.refreshGroupMembers});
+      required this.isCurrentUser,
+      required this.isBalancePositive,
+      required this.isGroupAdmin,
+      required this.groupId,
+      required this.refreshGroupMembers});
 
   void onSelected(BuildContext context, int item) async {
     switch (item) {
@@ -121,7 +126,9 @@ class GroupMembersCard extends StatelessWidget {
           ToastService.showToast(
               "Only admin is allowed to remove members from group!");
         else {
-          context.read<GroupMembersBloc>().add(RemoveMember(groupId: groupId, userId: user['id']));
+          context
+              .read<GroupMembersBloc>()
+              .add(RemoveMember(groupId: groupId, userId: user['id']));
         }
         break;
     }
@@ -132,11 +139,11 @@ class GroupMembersCard extends StatelessWidget {
     return Card(
       child: InkWell(
         child: Padding(
-          padding: const EdgeInsets.all(10),
+          padding: const EdgeInsets.all(5),
           child: Row(
             children: [
               Icon(Icons.person_2_outlined, color: Colors.grey[300], size: 35),
-              SizedBox(width: 20),
+              SizedBox(width: 6),
               Expanded(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -146,7 +153,7 @@ class GroupMembersCard extends StatelessWidget {
                           ? '${user['username']} (YOU)'
                           : user['username'],
                       style:
-                      TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
+                          TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
                     ),
                     Row(
                       children: [
@@ -174,7 +181,7 @@ class GroupMembersCard extends StatelessWidget {
                               ),
                             ],
                           ),
-                        SizedBox(width: 15),
+                        SizedBox(width: 5),
                         if (!isCurrentUser)
                           PopupMenuButton<int>(
                             color: Colors.grey[500],

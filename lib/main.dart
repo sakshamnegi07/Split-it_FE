@@ -5,10 +5,12 @@ import 'ui/home/home.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:split_fe/ui/splashscreen/splashscreen.dart';
+import 'package:split_fe/services/api_service.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 void main() async {
+  ApiService.setupInterceptors();
   WidgetsFlutterBinding.ensureInitialized();
   await FlutterDownloader.initialize(
       debug:

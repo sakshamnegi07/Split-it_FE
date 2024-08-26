@@ -27,25 +27,29 @@ class FetchedUser {
   }
 }
 
-class ApiInterceptor extends Interceptor {
-  @override
-  void onError(DioException err, ErrorInterceptorHandler handler) {
-    if (err.response?.statusCode == 401 || err.response == null) {
-      ToastService.showToast("User unauthorised. Please login again!");
-      navigatorKey.currentState?.pushAndRemoveUntil(
-        MaterialPageRoute(builder: (context) => LoginScreen()),
-        (Route<dynamic> route) => false,
-      );
-    }
-    super.onError(err, handler);
-  }
-}
-
 class ApiService {
-  static final Dio dio = Dio(BaseOptions(
-    connectTimeout: const Duration(seconds: 3),
-    receiveTimeout: const Duration(seconds: 3),
-  ));
+  static final Dio dio = Dio();
+
+  static void setupInterceptors() {
+    dio.interceptors.add(
+      InterceptorsWrapper(
+        onError: (DioException err, ErrorInterceptorHandler handler) async {
+          if (err.response?.statusCode == 401 || err.response == null) {
+            final SharedPreferences prefs =
+                await SharedPreferences.getInstance();
+            await prefs.clear();
+            ToastService.showToast("User unauthorised. Please login again!");
+            navigatorKey.currentState?.pushAndRemoveUntil(
+              MaterialPageRoute(builder: (context) => LoginScreen()),
+              (Route<dynamic> route) => false,
+            );
+            return handler.reject(err);
+          }
+          return handler.next(err);
+        },
+      ),
+    );
+  }
 
   static Future<Map<String, dynamic>> login(
       {required String email, required String password}) async {
