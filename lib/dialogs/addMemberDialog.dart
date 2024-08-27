@@ -44,9 +44,8 @@ class _UserSearchDialogState extends State<UserSearchDialog> {
           userId: _searchedUser!['id'], groupId: widget.groupId);
       setState(() {
         if (!data.containsKey('Error')) {
-          _searchedUser = data;
-          ToastService.showToast('Member successfully added!');
           Navigator.pop(context, "Member added!");
+          ToastService.showToast('Member successfully added!');
         } else
           ToastService.showToast(data['Error']);
         _isLoading = false;

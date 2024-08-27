@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:split_fe/dialogs/remindDialog.dart';
 import 'package:split_fe/dialogs/settleUpDialog.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class BalancesCard extends StatelessWidget {
   final dynamic balance;
@@ -26,13 +27,18 @@ class BalancesCard extends StatelessWidget {
                   Center(
                     child: RichText(
                       text: TextSpan(
+                        style: GoogleFonts.nunitoSans(
+                          textStyle: TextStyle(
+                            color: Colors.white,
+                          ),
+                        ),
                         children: <TextSpan>[
                           TextSpan(
                             text: balance['total_amount'].toDouble() > 0.0
                                 ? 'You are owed'
                                 : balance['total_amount'].toDouble() < 0.0
-                                ? 'You owe'
-                                : 'You are settled up!',
+                                    ? 'You owe'
+                                    : 'You are settled up!',
                             style: TextStyle(fontSize: 16),
                           ),
                           TextSpan(
@@ -61,7 +67,7 @@ class BalancesCard extends StatelessWidget {
                               receiverId: balance['borrower_id'],
                               receiverName: balance['borrower_name'],
                               amount:
-                              balance['total_amount'].toDouble().abs()));
+                                  balance['total_amount'].toDouble().abs()));
 
                       if (result == "Settled") onDialogClose();
                     },
@@ -77,8 +83,7 @@ class BalancesCard extends StatelessWidget {
                         builder: (BuildContext context) => RemindDialog(
                             receiverId: balance['borrower_id'],
                             receiverName: balance['borrower_name'],
-                            amount:
-                            balance['total_amount'].toDouble())),
+                            amount: balance['total_amount'].toDouble())),
                     child: Text('Remind!'))
             ],
           ),

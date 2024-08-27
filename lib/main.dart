@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'ui/login/login.dart';
 import 'ui/register/register.dart';
-import 'ui/home/home.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:split_fe/ui/splashscreen/splashscreen.dart';
@@ -28,38 +27,51 @@ class MyApp extends StatelessWidget {
       title: 'Expense Tracker',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        textTheme: const TextTheme(
-          bodySmall: TextStyle(color: Colors.white),
-          bodyLarge: TextStyle(color: Colors.white),
-          bodyMedium: TextStyle(color: Colors.white),
-          labelLarge: TextStyle(color: Colors.white),
-          labelMedium: TextStyle(color: Colors.white),
-          labelSmall: TextStyle(color: Colors.white),
-          titleLarge: TextStyle(color: Colors.white),
-          titleMedium: TextStyle(color: Colors.white),
-          titleSmall: TextStyle(color: Colors.white),
-          headlineLarge: TextStyle(color: Colors.white),
-          headlineMedium: TextStyle(color: Colors.white),
-          headlineSmall: TextStyle(color: Colors.white),
-        ),
+        textTheme:
+            GoogleFonts.nunitoTextTheme(Theme.of(context).textTheme.copyWith(
+                  bodySmall: TextStyle(
+                    color: Colors.white,
+                  ),
+                  bodyMedium: TextStyle(
+                    color: Colors.white,
+                  ),
+                  bodyLarge: TextStyle(
+                    color: Colors.white,
+                  ),
+                  labelLarge: TextStyle(
+                    color: Colors.white,
+                  ),
+                  labelMedium: TextStyle(
+                    color: Colors.white,
+                  ),
+                  labelSmall: TextStyle(
+                    color: Colors.white,
+                  ),
+                )),
         inputDecorationTheme: const InputDecorationTheme(
           hintStyle: TextStyle(color: Colors.white),
           labelStyle: TextStyle(color: Colors.white),
         ),
-        appBarTheme: const AppBarTheme(
+        appBarTheme: AppBarTheme(
+          titleTextStyle: GoogleFonts.nunito(
+            textStyle: TextStyle(
+              fontSize: 20.0,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
+          ),
           backgroundColor: Colors.grey,
-          titleTextStyle: TextStyle(
-            color: Colors.white,
-            fontSize: 20,
+          toolbarTextStyle: GoogleFonts.nunitoSans(
+            textStyle: TextStyle(
+              fontSize: 18.0,
+              color: Colors.white,
+            ),
           ),
           iconTheme: IconThemeData(
             color: Colors.white,
           ),
         ),
         scaffoldBackgroundColor: Colors.black87,
-        primaryTextTheme: GoogleFonts.montserratTextTheme(
-          Theme.of(context).primaryTextTheme,
-        ),
       ),
       home: SplashScreen(),
       navigatorKey: navigatorKey,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:split_fe/utils/random_icon_generator.dart';
 import 'package:intl/intl.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class GroupExpensesCard extends StatelessWidget {
   final dynamic expense;
@@ -32,6 +33,11 @@ class GroupExpensesCard extends StatelessWidget {
                       ),
                       RichText(
                         text: TextSpan(
+                          style: GoogleFonts.nunitoSans(
+                            textStyle: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
                           children: <TextSpan>[
                             TextSpan(
                               text: '${expense['username']}',
@@ -58,7 +64,9 @@ class GroupExpensesCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(day, style: TextStyle(fontSize: 18)),
-                      Text(month, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18))
+                      Text(month,
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 18))
                     ],
                   ),
                   flex: 2),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
 import 'package:intl/intl.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class PaymentsCard extends StatelessWidget {
   final random = Random();
@@ -42,6 +43,11 @@ class PaymentsCard extends StatelessWidget {
                 children: [
                   RichText(
                     text: TextSpan(
+                      style: GoogleFonts.nunitoSans(
+                        textStyle: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
                       children: <TextSpan>[
                         TextSpan(
                           text: paymentData['paid_by_username'],
