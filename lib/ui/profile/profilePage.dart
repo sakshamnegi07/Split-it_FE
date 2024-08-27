@@ -31,9 +31,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
               children: [
                 Padding(
                   padding: const EdgeInsets.only(right: 6.0, top: 3.0),
-                  child: Image.asset('assets/images/logo.png', width: 30, height: 30),
+                  child: Image.asset('assets/images/logo.png',
+                      width: 30, height: 30),
                 ),
-                const Text('Account', style: TextStyle(color: Colors.white, fontSize: 18)),
+                const Text('Account',
+                    style: TextStyle(color: Colors.white, fontSize: 18)),
               ],
             ),
           ),
@@ -55,17 +57,25 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       elevation: 5,
                       margin: EdgeInsets.symmetric(vertical: 10),
                       child: ListTile(
-                        leading: Icon(Icons.person, color: Colors.white, size: 40,),
+                        leading: Icon(
+                          Icons.person,
+                          color: Colors.white,
+                          size: 40,
+                        ),
                         title: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              '${user['username']}',
-                              style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),
+                              '${user['username']}' ?? '',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20),
                             ),
                             Text(
-                              '${user['email']}',
-                              style: TextStyle(color: Colors.white, fontSize: 16),
+                              '${user['email']}' ?? '',
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 16),
                             )
                           ],
                         ),
@@ -82,17 +92,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 margin: EdgeInsets.symmetric(vertical: 10),
                 child: ListTile(
                   leading: Icon(Icons.logout, color: Colors.red, size: 40),
-                  title: Text('Logout', style: TextStyle(color: Colors.red[500], fontWeight: FontWeight.bold, fontSize: 20)),
+                  title: Text('Logout',
+                      style: TextStyle(
+                          color: Colors.red[500],
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20)),
                   onTap: () => showDialog<String>(
                       context: context,
-                      builder: (BuildContext context) => LogoutDialog()
-                  ),
+                      builder: (BuildContext context) => LogoutDialog()),
                 ),
                 color: Colors.grey[700],
               ),
             ],
           ),
-        )
-    );
+        ));
   }
 }
