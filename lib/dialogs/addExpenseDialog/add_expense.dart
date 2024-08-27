@@ -133,7 +133,6 @@ class _AddExpenseDialogState extends State<AddExpenseDialog> {
                   children: [
                     TextButton(
                       onPressed: () {
-                        ToastService.showToast("message");
                         Navigator.pop(context);
                       },
                       child: const Text('Close',

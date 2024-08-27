@@ -28,13 +28,20 @@ class FetchedUser {
 }
 
 class ApiService {
-  static final Dio dio = Dio();
+  static final Dio dio = Dio(
+    BaseOptions(
+      connectTimeout: Duration(seconds: 5),
+      sendTimeout: Duration(seconds: 5),
+      receiveTimeout: Duration(seconds: 5),
+    ),
+  );
 
   static void setupInterceptors() {
     dio.interceptors.add(
       InterceptorsWrapper(
         onError: (DioException err, ErrorInterceptorHandler handler) async {
-          if (err.response?.statusCode == 401 || err.response == null) {
+          if (err.response?.statusCode == 401 &&
+              err.requestOptions.path != '$apiUrl/login') {
             final SharedPreferences prefs =
                 await SharedPreferences.getInstance();
             await prefs.clear();

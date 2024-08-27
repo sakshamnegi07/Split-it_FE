@@ -9,17 +9,19 @@ class BalancesBloc extends Bloc<BalancesEvent, BalancesState> {
     on<RefreshBalances>(_onRefreshBalances);
   }
 
-  Future<void> _onFetchBalances(FetchBalances event, Emitter<BalancesState> emit) async {
+  Future<void> _onFetchBalances(
+      FetchBalances event, Emitter<BalancesState> emit) async {
     emit(BalancesLoading());
     try {
       final balances = await ApiService.getUserBalances();
       emit(BalancesLoaded(balances));
     } catch (error) {
-      emit(BalancesError('Failed to fetch balances: $error'));
+      emit(BalancesError('Failed to fetch balances'));
     }
   }
 
-  Future<void> _onRefreshBalances(RefreshBalances event, Emitter<BalancesState> emit) async {
+  Future<void> _onRefreshBalances(
+      RefreshBalances event, Emitter<BalancesState> emit) async {
     emit(BalancesLoading());
     try {
       final balances = await ApiService.getUserBalances();
