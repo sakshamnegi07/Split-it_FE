@@ -19,7 +19,6 @@ class _SplashScreenState extends State<SplashScreen> {
   Future<void> _checkAuthToken() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? token = prefs.getString('authToken');
-
     if (token != null && await ApiService.isTokenValid(token)) {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (context) => LandingScreen()),

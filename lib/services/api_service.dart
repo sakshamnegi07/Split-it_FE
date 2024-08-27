@@ -444,23 +444,26 @@ class ApiService {
   }
 
   static Future<bool> isTokenValid(String token) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    String? authToken = prefs.getString('authToken');
-    final response = await dio.get(
-      '$apiUrl/validate-user',
-      options: Options(
-        headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
-          'Authorization': 'Bearer $authToken'
-        },
-      ),
-    );
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      String? authToken = prefs.getString('authToken');
+      await Future.delayed(Duration(seconds: 1));
+      final response = await dio.get(
+        '$apiUrl/validate-user',
+        options: Options(
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+            'Authorization': 'Bearer $authToken'
+          },
+        ),
+      );
 
-    await Future.delayed(Duration(seconds: 1));
-
-    if (response.statusCode == 200) {
-      return true;
-    } else {
+      if (response.statusCode == 200) {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (e) {
       return false;
     }
   }

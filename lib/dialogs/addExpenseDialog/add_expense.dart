@@ -61,6 +61,34 @@ class _AddExpenseDialogState extends State<AddExpenseDialog> {
                 SizedBox(
                   height: 50,
                   width: 280,
+                  child: DropdownButtonFormField<int>(
+                    value: selectedMemberId,
+                    onChanged: (int? newValue) {
+                      selectedMemberId = newValue;
+                    },
+                    items: members.map<DropdownMenuItem<int>>(
+                        (Map<String, dynamic> member) {
+                      return DropdownMenuItem<int>(
+                        value: member['id'],
+                        child: Text(
+                          member['username'],
+                          style: TextStyle(color: Colors.white, fontSize: 14),
+                        ),
+                      );
+                    }).toList(),
+                    decoration: InputDecoration(
+                      hintText: "Paid by",
+                      hintStyle: TextStyle(color: Colors.white70, fontSize: 14),
+                    ),
+                    dropdownColor: Colors.grey[800],
+                    style: TextStyle(color: Colors.white, fontSize: 14),
+                    isExpanded: true,
+                    menuMaxHeight: 200,
+                  ),
+                ),
+                SizedBox(
+                  height: 50,
+                  width: 280,
                   child: TextFormField(
                     controller: _expenseDescription,
                     style: const TextStyle(color: Colors.white, fontSize: 14),
@@ -84,34 +112,6 @@ class _AddExpenseDialogState extends State<AddExpenseDialog> {
                     inputFormatters: <TextInputFormatter>[
                       FilteringTextInputFormatter.allow(RegExp(r'^\d*\.?\d*')),
                     ],
-                  ),
-                ),
-                SizedBox(
-                  height: 50,
-                  width: 280,
-                  child: DropdownButtonFormField<int>(
-                    value: selectedMemberId,
-                    onChanged: (int? newValue) {
-                      selectedMemberId = newValue;
-                    },
-                    items: members.map<DropdownMenuItem<int>>(
-                        (Map<String, dynamic> member) {
-                      return DropdownMenuItem<int>(
-                        value: member['id'],
-                        child: Text(
-                          member['username'],
-                          style: TextStyle(color: Colors.white, fontSize: 14),
-                        ),
-                      );
-                    }).toList(),
-                    decoration: InputDecoration(
-                      hintText: "Paid by",
-                      hintStyle: TextStyle(color: Colors.white70),
-                    ),
-                    dropdownColor: Colors.grey[800],
-                    style: TextStyle(color: Colors.white, fontSize: 14),
-                    isExpanded: true,
-                    menuMaxHeight: 200,
                   ),
                 ),
                 Padding(
