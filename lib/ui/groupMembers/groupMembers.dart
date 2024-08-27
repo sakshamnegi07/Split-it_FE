@@ -139,11 +139,11 @@ class GroupMembersCard extends StatelessWidget {
     return Card(
       child: InkWell(
         child: Padding(
-          padding: const EdgeInsets.all(5),
+          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
           child: Row(
             children: [
               Icon(Icons.person_2_outlined, color: Colors.grey[300], size: 35),
-              SizedBox(width: 6),
+              SizedBox(width: 4),
               Expanded(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -161,11 +161,9 @@ class GroupMembersCard extends StatelessWidget {
                           Column(
                             children: [
                               Text(
-                                isBalancePositive
-                                    ? 'You are owed:'
-                                    : 'You owe:',
+                                isBalancePositive ? 'You are owed' : 'You owe',
                                 style: TextStyle(
-                                    fontSize: 16,
+                                    fontSize: 14,
                                     color: isBalancePositive
                                         ? Colors.green[500]
                                         : Colors.red[300]),
@@ -173,7 +171,7 @@ class GroupMembersCard extends StatelessWidget {
                               Text(
                                 'Rs. ${user['amount']}',
                                 style: TextStyle(
-                                    fontSize: 16,
+                                    fontSize: 15,
                                     fontWeight: FontWeight.bold,
                                     color: isBalancePositive
                                         ? Colors.green[500]
@@ -181,7 +179,7 @@ class GroupMembersCard extends StatelessWidget {
                               ),
                             ],
                           ),
-                        SizedBox(width: 5),
+                        SizedBox(width: 2),
                         if (!isCurrentUser)
                           PopupMenuButton<int>(
                             color: Colors.grey[500],

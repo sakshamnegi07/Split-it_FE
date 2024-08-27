@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../services/api_service.dart';
 import '../utils/toast.dart';
 import 'dart:math';
+import 'package:google_fonts/google_fonts.dart';
 
 class RemindDialog extends StatefulWidget {
   final int receiverId;
@@ -80,7 +81,12 @@ class _RemindDialogState extends State<RemindDialog> {
                         child: RichText(
                           textAlign: TextAlign.center,
                           text: TextSpan(
-                            style: TextStyle(fontSize: 18),
+                            style: GoogleFonts.nunitoSans(
+                              textStyle: TextStyle(
+                                fontSize: 18.0,
+                                color: Colors.white,
+                              ),
+                            ),
                             children: <TextSpan>[
                               TextSpan(
                                 text: 'Remind ',

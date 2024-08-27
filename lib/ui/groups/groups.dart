@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:split_fe/utils/toast.dart';
 import 'package:split_fe/services/api_service.dart';
 import 'package:split_fe/ui/groupDetails/groupDetails.dart';
 import 'dart:math';
@@ -19,7 +18,8 @@ class GroupScreen extends StatefulWidget {
 
 class _GroupScreenState extends State<GroupScreen> {
   final TextEditingController _groupNameController = TextEditingController();
-  final TextEditingController _groupDescriptionController = TextEditingController();
+  final TextEditingController _groupDescriptionController =
+      TextEditingController();
 
   int? currentUserId;
 
@@ -39,9 +39,9 @@ class _GroupScreenState extends State<GroupScreen> {
 
   void _createGroup() {
     context.read<GroupBloc>().add(CreateGroup(
-      groupName: _groupNameController.text,
-      groupDescription: _groupDescriptionController.text,
-    ));
+          groupName: _groupNameController.text,
+          groupDescription: _groupDescriptionController.text,
+        ));
     Navigator.pop(context);
   }
 
@@ -102,7 +102,7 @@ class _GroupScreenState extends State<GroupScreen> {
                                       color: Colors.white, fontSize: 14),
                                   decoration: const InputDecoration(
                                     hintText:
-                                    "Enter group description (optional)",
+                                        "Enter group description (optional)",
                                   ),
                                 )),
                             const SizedBox(height: 25),

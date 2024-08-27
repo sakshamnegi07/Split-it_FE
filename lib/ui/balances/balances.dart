@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:split_fe/utils/toast.dart';
 import 'package:split_fe/services/api_service.dart';
 import 'package:split_fe/utils/random_icon_generator.dart';
 import 'package:split_fe/dialogs/settleUpDialog.dart';
@@ -88,8 +87,10 @@ class _BalancesScreenState extends State<BalancesScreen> {
                     Text('Settlements:',
                         style: TextStyle(
                             fontSize: 18, fontWeight: FontWeight.bold)),
-                    if(balances.isEmpty)
-                     Expanded(child: Center(child: Text("No settlements with friends yet!"))),
+                    if (balances.isEmpty)
+                      Expanded(
+                          child: Center(
+                              child: Text("No settlements with friends yet!"))),
                     Expanded(
                       child: ListView.builder(
                         itemCount: balances.length,
