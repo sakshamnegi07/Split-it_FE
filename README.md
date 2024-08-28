@@ -118,8 +118,6 @@ SplitIt is a Flutter application designed to simplify the management of shared e
 
 - **Manual Settlement Recording**: Users can manually record cash settlements between members.
 - **Payment History**: The app maintains a history of all settlements and payments for transparency and record-keeping.
-![settle]()![remind]()
-
 
   <table>
   <tr>
@@ -329,4 +327,4 @@ SplitIt is a Flutter application designed to simplify the management of shared e
 
 ## Contact
 
-Reach out to me at saksham.negi@supersixsports.com for any questions, feedback, or collaboration opportunities.
+Reach out to me at [saksham.negi@supersixsports.com](mailto:saksham.negi@supersixsports.com) for any questions, feedback, or collaboration opportunities.
