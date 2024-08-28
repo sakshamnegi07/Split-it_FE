@@ -191,6 +191,14 @@ SplitIt is a Flutter application designed to simplify the management of shared e
 
 ### MySQL setup:
 
+<table>
+  <tr>
+    <td>
+      <img src="https://github.com/user-attachments/assets/6ee40ac8-cd74-4530-ad35-c20330d35710" alt="Database diagram"/>
+    </td>
+  </tr>
+</table>
+
 1. **Create a database**:
    ```bash
    CREATE DATABASE `database_name`
