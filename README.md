@@ -37,9 +37,19 @@ SplitIt is a Flutter application designed to simplify the management of shared e
   - Passwords are hashed using industry-standard encryption.
   - Sessions are managed securely to prevent unauthorized access.
 
-<img src="https://github.com/user-attachments/assets/90b9e868-bdca-4b68-adb3-a26c9f388c7a" alt="Landing Page" width="300" />
-<img src="https://github.com/user-attachments/assets/4c8473cb-bd2f-43f0-af7b-731939027829" alt="Login page" width="300" />
-<img src="https://github.com/user-attachments/assets/53e64769-b9ba-471a-8aa8-c0a598f256cb" alt="Screenshot" width="300" />
+<table>
+  <tr>
+    <td>
+      <img src="https://github.com/user-attachments/assets/90b9e868-bdca-4b68-adb3-a26c9f388c7a" alt="Landing Page" width="300" />
+    </td>
+    <td>
+      <img src="https://github.com/user-attachments/assets/4c8473cb-bd2f-43f0-af7b-731939027829" alt="Login page" width="300" />
+    </td>
+    <td>
+      <img src="https://github.com/user-attachments/assets/53e64769-b9ba-471a-8aa8-c0a598f256cb" alt="Screenshot" width="300" />
+    </td>
+  </tr>
+</table>
 
 
 ## Group Management
@@ -49,6 +59,24 @@ SplitIt is a Flutter application designed to simplify the management of shared e
     - Each group requires a name and a description.
 - **Manage Group Members**: The group creator can add or remove members as needed.
 - **Group List Management**: Users can view all their created groups and the members within each group.
+
+<table>
+  <tr>
+    <td>
+      <img src="https://github.com/user-attachments/assets/4a8307c1-a0f2-4d67-8c2d-27586256ca40" alt="Landing Page" width="300" />
+    </td>
+    <td>
+      <img src="https://github.com/user-attachments/assets/96d7de8c-381d-4e83-adb6-4883860606a5" alt="Login page" width="300" />
+    </td>
+    <td>
+      <img src="https://github.com/user-attachments/assets/33aa32b9-b301-44af-af25-dcc6db900215" alt="Screenshot" width="300" />
+    </td>
+    <td>
+      <img src="https://github.com/user-attachments/assets/e6b4ca8d-368f-4538-8ebc-3aaac0c21b8f" width="300" />
+    </td>
+  </tr>
+</table>
+
 
 ## Expense Management
 
@@ -60,7 +88,21 @@ SplitIt is a Flutter application designed to simplify the management of shared e
   - Paid By (user who paid for the expense)
 - **Splitting Expenses**: Expenses are split equally among all group participants.
 - **Expense History**: Users can view the history of all expenses in each group.
-  
+
+  <table>
+  <tr>
+    <td>
+      <img src="https://github.com/user-attachments/assets/90b9e868-bdca-4b68-adb3-a26c9f388c7a" alt="Landing Page" width="300" />
+    </td>
+    <td>
+      <img src="https://github.com/user-attachments/assets/4c8473cb-bd2f-43f0-af7b-731939027829" alt="Login page" width="300" />
+    </td>
+    <td>
+      <img src="https://github.com/user-attachments/assets/53e64769-b9ba-471a-8aa8-c0a598f256cb" alt="Screenshot" width="300" />
+    </td>
+  </tr>
+</table>
+
 
 ## Debt Tracking
 
