@@ -46,7 +46,7 @@ SplitIt is a Flutter application designed to simplify the management of shared e
       <img src="https://github.com/user-attachments/assets/4c8473cb-bd2f-43f0-af7b-731939027829" alt="Login page" width="300" />
     </td>
     <td>
-      <img src="https://github.com/user-attachments/assets/53e64769-b9ba-471a-8aa8-c0a598f256cb" alt="Screenshot" width="300" />
+      <img src="https://github.com/user-attachments/assets/53e64769-b9ba-471a-8aa8-c0a598f256cb" alt="Logout" width="300" />
     </td>
   </tr>
 </table>
@@ -63,16 +63,16 @@ SplitIt is a Flutter application designed to simplify the management of shared e
 <table>
   <tr>
     <td>
-      <img src="https://github.com/user-attachments/assets/4a8307c1-a0f2-4d67-8c2d-27586256ca40" alt="Landing Page" width="300" />
+      <img src="https://github.com/user-attachments/assets/4a8307c1-a0f2-4d67-8c2d-27586256ca40" alt="Group list" width="300" />
     </td>
     <td>
-      <img src="https://github.com/user-attachments/assets/96d7de8c-381d-4e83-adb6-4883860606a5" alt="Login page" width="300" />
+      <img src="https://github.com/user-attachments/assets/96d7de8c-381d-4e83-adb6-4883860606a5" alt="Create group" width="300" />
     </td>
     <td>
-      <img src="https://github.com/user-attachments/assets/33aa32b9-b301-44af-af25-dcc6db900215" alt="Screenshot" width="300" />
+      <img src="https://github.com/user-attachments/assets/33aa32b9-b301-44af-af25-dcc6db900215" alt="Group members" width="300" />
     </td>
     <td>
-      <img src="https://github.com/user-attachments/assets/e6b4ca8d-368f-4538-8ebc-3aaac0c21b8f" width="300" />
+      <img src="https://github.com/user-attachments/assets/e6b4ca8d-368f-4538-8ebc-3aaac0c21b8f" alt="Add member" width="300" />
     </td>
   </tr>
 </table>
@@ -92,13 +92,10 @@ SplitIt is a Flutter application designed to simplify the management of shared e
   <table>
   <tr>
     <td>
-      <img src="https://github.com/user-attachments/assets/90b9e868-bdca-4b68-adb3-a26c9f388c7a" alt="Landing Page" width="300" />
+      <img src="https://github.com/user-attachments/assets/55bea598-7917-4dad-b987-3a714bd4e692" alt="Expense list" width="300" />
     </td>
     <td>
-      <img src="https://github.com/user-attachments/assets/4c8473cb-bd2f-43f0-af7b-731939027829" alt="Login page" width="300" />
-    </td>
-    <td>
-      <img src="https://github.com/user-attachments/assets/53e64769-b9ba-471a-8aa8-c0a598f256cb" alt="Screenshot" width="300" />
+      <img src="https://github.com/user-attachments/assets/6d589dcb-4a26-492e-a2e1-e67927432d7f" alt="Add expense" width="300" />
     </td>
   </tr>
 </table>
@@ -109,10 +106,31 @@ SplitIt is a Flutter application designed to simplify the management of shared e
 - **Automatic Debt Calculation**: After an expense is recorded, the app automatically updates the debts between users within the group.
 - **Debt Overview**: Users can see a summary of who owes whom and how much within each group.
 
+<table>
+  <tr>
+    <td>
+      <img src="https://github.com/user-attachments/assets/6d892cf6-2c48-422e-93b5-e927c3a2beab" alt="Balances" width="300" />
+    </td>
+  </tr>
+</table>
+
 ## Settlement and Payment Tracking
 
 - **Manual Settlement Recording**: Users can manually record cash settlements between members.
 - **Payment History**: The app maintains a history of all settlements and payments for transparency and record-keeping.
+![settle]()![remind]()
+
+
+  <table>
+  <tr>
+    <td>
+      <img src="https://github.com/user-attachments/assets/96397b88-1d22-4b2b-a774-8607dc904685" alt="Settlement" width="300" />
+    </td>
+    <td>
+      <img src="https://github.com/user-attachments/assets/e4646894-40d1-4e86-bce1-4c9c2b5fb35d" alt="Send Reminder" width="300" />
+    </td>
+  </tr>
+</table>
 
 ## Email Notifications
 
@@ -120,11 +138,36 @@ SplitIt is a Flutter application designed to simplify the management of shared e
   - New expenses added
   - Reminders for payment
 - **Notification Methods**: Notifications are sent via email.
+  
+<table>
+  <tr>
+    <td>
+      <img src="https://github.com/user-attachments/assets/81b482ef-c936-45d8-814c-87d395f97526" alt="New expense notification" width="300" />
+    </td>
+    <td>
+      <img src="https://github.com/user-attachments/assets/952b1980-b703-472a-8c01-455665fb98f9" alt="Settlement notification" width="300" />
+    </td>
+    <td>
+      <img src="https://github.com/user-attachments/assets/7ac9d239-e34e-464e-8764-d9daf8bc533c" alt="Payment reminder notification" width="300" />
+    </td>
+  </tr>
+</table>
 
 ## Payment Reports
 
 - **Expense Reports**: Users can generate report for the payments involving them.
 - **Export Options**: Reports are exported in CSV(comma separated values) format.
+
+<table>
+  <tr>
+    <td>
+      <img src="https://github.com/user-attachments/assets/2c61509d-f2d6-4f1c-ba93-6896f0f16d55" alt="Payments list" width="300" />
+    </td>
+    <td>
+      <img src="https://github.com/user-attachments/assets/26fbb1cf-ff70-4a29-8f4d-48c2ada86c76" alt="Sample report" width="300" />
+    </td>
+  </tr>
+</table>
 
 ## Technology Stack
 
