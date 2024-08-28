@@ -37,10 +37,6 @@ SplitIt is a Flutter application designed to simplify the management of shared e
   - Passwords are hashed using industry-standard encryption.
   - Sessions are managed securely to prevent unauthorized access.
 
-  ![Simulator Screenshot - iPhone 15 Pro Max - 2024-08-28 at 12 27 43](https://github.com/user-attachments/assets/200f96b6-7d95-4ca8-9347-20a5c761b858)
-![Simulator Screenshot - iPhone 15 Pro Max - 2024-08-28 at 15 36 13](https://github.com/user-attachments/assets/0b63bfaa-4938-42c7-96f1-e6d6a8421011)
-![Simulator Screenshot - iPhone 15 Pro Max - 2024-08-28 at 15 36 16](https://github.com/user-attachments/assets/36f4e6b7-4cf2-47f2-ad37-bb48d6f055c3)
-
 ## Group Management
 
 - **Create Groups**: 
@@ -48,11 +44,6 @@ SplitIt is a Flutter application designed to simplify the management of shared e
     - Each group requires a name and a description.
 - **Manage Group Members**: The group creator can add or remove members as needed.
 - **Group List Management**: Users can view all their created groups and the members within each group.
-
-![Simulator Screenshot - iPhone 15 Pro Max - 2024-08-28 at 12 28 34](https://github.com/user-attachments/assets/ddd1ad0b-91a5-4f52-907b-e6775c67500a)
-![Simulator Screenshot - iPhone 15 Pro Max - 2024-08-28 at 12 28 41](https://github.com/user-attachments/assets/4625e47d-7dcc-4859-ba7a-f5881cc43001)
-![Simulator Screenshot - iPhone 15 Pro Max - 2024-08-28 at 12 33 25](https://github.com/user-attachments/assets/75b906f5-43e3-413f-89a9-4c47e10e5040)
-![Simulator Screenshot - iPhone 15 Pro Max - 2024-08-28 at 12 33 42](https://github.com/user-attachments/assets/b69b809f-1fca-446b-ade2-6af00de2e247)
 
 
 ## Expense Management
@@ -66,19 +57,18 @@ SplitIt is a Flutter application designed to simplify the management of shared e
 - **Splitting Expenses**: Expenses are split equally among all group participants.
 - **Expense History**: Users can view the history of all expenses in each group.
 
-![Simulator Screenshot - iPhone 15 Pro Max - 2024-08-28 at 12 34 03](https://github.com/user-attachments/assets/3ff5728d-f26e-4628-b888-7b7b93dd72e2)
-![Simulator Screenshot - iPhone 15 Pro Max - 2024-08-28 at 12 33 12](https://github.com/user-attachments/assets/5e1b5102-be74-42ab-8f9d-03f7357f2342)
-  
 
 ## Debt Tracking
 
 - **Automatic Debt Calculation**: After an expense is recorded, the app automatically updates the debts between users within the group.
 - **Debt Overview**: Users can see a summary of who owes whom and how much within each group.
 
+
 ## Settlement and Payment Tracking
 
 - **Manual Settlement Recording**: Users can manually record cash settlements between members.
 - **Payment History**: The app maintains a history of all settlements and payments for transparency and record-keeping.
+
 
 ## Email Notifications
 
@@ -87,10 +77,12 @@ SplitIt is a Flutter application designed to simplify the management of shared e
   - Reminders for payment
 - **Notification Methods**: Notifications are sent via email.
 
+
 ## Payment Reports
 
 - **Expense Reports**: Users can generate report for the payments involving them.
 - **Export Options**: Reports are exported in CSV(comma separated values) format.
+
 
 ## Technology Stack
 
@@ -100,6 +92,7 @@ SplitIt is a Flutter application designed to simplify the management of shared e
 - **Authentication**: JWT
 - **Hosting**: Database and backend are hosted on AWS
 - **Application**: The android application can be downloaded from [here](https://github.com/sakshamnegi07/Split-it_FE/releases/tag/v1.0.0)
+
 
 ## Setup and Installation
 
@@ -178,6 +171,7 @@ SplitIt is a Flutter application designed to simplify the management of shared e
     ```bash
     flutter run
     ```
+
 
 ## Contact
 
