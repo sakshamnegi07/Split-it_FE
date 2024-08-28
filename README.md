@@ -37,7 +37,7 @@ SplitIt is a Flutter application designed to simplify the management of shared e
   - Passwords are hashed using industry-standard encryption.
   - Sessions are managed securely to prevent unauthorized access.
 
-![Simulator Screenshot - iPhone 15 Pro Max - 2024-08-28 at 12 27 43](https://github.com/user-attachments/assets/90b9e868-bdca-4b68-adb3-a26c9f388c7a.webp)
+![Simulator Screenshot - iPhone 15 Pro Max - 2024-08-28 at 12 27 43](https://github.com/user-attachments/assets/90b9e868-bdca-4b68-adb3-a26c9f388c7a)
 
 
 ## Group Management
