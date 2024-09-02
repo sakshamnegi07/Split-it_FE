@@ -194,7 +194,7 @@ SplitIt is a Flutter application designed to simplify the management of shared e
 <table>
   <tr>
     <td>
-      <img src="https://github.com/user-attachments/assets/6ee40ac8-cd74-4530-ad35-c20330d35710" alt="Database diagram"/>
+      <img src="https://github.com/user-attachments/assets/bc559c82-1f99-4fd7-9612-04855b5c2647" alt="Database" width="300" />
     </td>
   </tr>
 </table>
@@ -209,13 +209,17 @@ SplitIt is a Flutter application designed to simplify the management of shared e
     ```bash
     CREATE TABLE `balances` (
       `group_id` int DEFAULT NULL,
-      `lender` bigint DEFAULT NULL,
-      `borrower` bigint DEFAULT NULL,
+      `lender` int DEFAULT NULL,
+      `borrower` int DEFAULT NULL,
       `amount` decimal(10,2) NOT NULL,
       `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
       `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
       `balance_id` int NOT NULL AUTO_INCREMENT,
-      PRIMARY KEY (`balance_id`)
+      PRIMARY KEY (`balance_id`),
+      KEY `lender` (`lender`),
+      KEY `borrower` (`borrower`),
+      CONSTRAINT `balances_ibfk_1` FOREIGN KEY (`lender`) REFERENCES `users` (`id`),
+      CONSTRAINT `balances_ibfk_2` FOREIGN KEY (`borrower`) REFERENCES `users` (`id`)
     );
     
     CREATE TABLE `expenses` (
@@ -223,51 +227,66 @@ SplitIt is a Flutter application designed to simplify the management of shared e
       `group_id` int DEFAULT NULL,
       `description` varchar(255) NOT NULL,
       `amount` decimal(10,2) NOT NULL,
-      `paid_by` bigint DEFAULT NULL,
+      `paid_by` int DEFAULT NULL,
       `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-      PRIMARY KEY (`expense_id`)
+      PRIMARY KEY (`expense_id`),
+      KEY `paid_by` (`paid_by`),
+      CONSTRAINT `expenses_ibfk_1` FOREIGN KEY (`paid_by`) REFERENCES `users` (`id`)
     );
-
+    
     CREATE TABLE `groups` (
       `group_id` int NOT NULL AUTO_INCREMENT,
       `group_name` varchar(255) NOT NULL,
       `group_description` text,
-      `created_by` bigint unsigned NOT NULL,
+      `created_by` int DEFAULT NULL,
       `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
       `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
       `deleted_at` datetime DEFAULT NULL,
       PRIMARY KEY (`group_id`),
       KEY `created_by` (`created_by`),
-      CONSTRAINT `groups_ibfk_1` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`)
+      CONSTRAINT `groups_ibfk_1` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`),
+      CONSTRAINT `empty_string_check` CHECK ((`group_name` <> _utf8mb4''))
     );
     
     CREATE TABLE `members` (
-      `user_id` bigint DEFAULT NULL,
+      `user_id` int DEFAULT NULL,
       `group_id` int DEFAULT NULL,
       `joined_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-      `deleted_at` timestamp NULL DEFAULT NULL
+      `deleted_at` timestamp NULL DEFAULT NULL,
+      KEY `group_id` (`group_id`),
+      KEY `user_id` (`user_id`),
+      CONSTRAINT `members_ibfk_1` FOREIGN KEY (`group_id`) REFERENCES `groups` (`group_id`),
+      CONSTRAINT `members_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
     );
     
     CREATE TABLE `payments` (
       `payment_id` int NOT NULL AUTO_INCREMENT,
-      `paid_by` bigint DEFAULT NULL,
-      `paid_to` bigint DEFAULT NULL,
+      `paid_by` int DEFAULT NULL,
+      `paid_to` int DEFAULT NULL,
       `amount` decimal(10,2) NOT NULL,
       `paid_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-      PRIMARY KEY (`payment_id`)
+      PRIMARY KEY (`payment_id`),
+      KEY `paid_by` (`paid_by`),
+      KEY `paid_to` (`paid_to`),
+      CONSTRAINT `payments_ibfk_1` FOREIGN KEY (`paid_by`) REFERENCES `users` (`id`),
+      CONSTRAINT `payments_ibfk_2` FOREIGN KEY (`paid_to`) REFERENCES `users` (`id`)
     );
     
     CREATE TABLE `reminders` (
       `reminder_id` int NOT NULL AUTO_INCREMENT,
-      `sent_by` bigint DEFAULT NULL,
-      `sent_to` bigint DEFAULT NULL,
+      `sent_by` int DEFAULT NULL,
+      `sent_to` int DEFAULT NULL,
       `amount` decimal(10,2) NOT NULL,
       `sent_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-      PRIMARY KEY (`reminder_id`)
+      PRIMARY KEY (`reminder_id`),
+      KEY `sent_by` (`sent_by`),
+      KEY `sent_to` (`sent_to`),
+      CONSTRAINT `reminders_ibfk_1` FOREIGN KEY (`sent_by`) REFERENCES `users` (`id`),
+      CONSTRAINT `reminders_ibfk_2` FOREIGN KEY (`sent_to`) REFERENCES `users` (`id`)
     );
 
     CREATE TABLE `users` (
-      `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+      `id` int NOT NULL AUTO_INCREMENT,
       `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
       `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
       `deleted_at` timestamp NULL DEFAULT NULL,
@@ -277,7 +296,7 @@ SplitIt is a Flutter application designed to simplify the management of shared e
       PRIMARY KEY (`id`),
       UNIQUE KEY `username` (`username`),
       UNIQUE KEY `email` (`email`)
-    );
+    ); 
     ```
 
 ### Backend Setup:
